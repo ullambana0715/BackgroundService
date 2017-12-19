@@ -3,6 +3,7 @@
     package="yang.backgroundservice">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,6 +18,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".GhostActivity"/>
+        <service android:name=".BgService"/>
+        <receiver android:name=".BgReciever">
+            <intent-filter >
+                <action android:name="bgreciever_action"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.TIME_TICK"/><!-->只能通过context.regesterBroadcast,不能在menifest中声明来监听<!-->
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
