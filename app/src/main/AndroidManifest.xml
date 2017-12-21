@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="yang.backgroundservice">
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:name=".App"
@@ -18,11 +20,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".GhostActivity"/>
-        <service android:name=".BgService"/>
+        <service android:name=".BgService" android:enabled="true" android:exported="true" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".BgJobService" android:enabled="true" android:exported="true" android:permission="android.permission.BIND_JOB_SERVICE"/>
         <receiver android:name=".BgReciever">
             <intent-filter >
                 <action android:name="bgreciever_action"/>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
                 <action android:name="android.intent.action.TIME_TICK"/><!-->只能通过context.regesterBroadcast,不能在menifest中声明来监听<!-->
             </intent-filter>
         </receiver>
