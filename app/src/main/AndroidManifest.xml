@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".GhostActivity"/>
         <service android:name=".BgService" android:enabled="true" android:exported="true" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".BgService$InnerService" android:enabled="true" android:exported="true"/>
         <service android:name=".BgJobService" android:enabled="true" android:exported="true" android:permission="android.permission.BIND_JOB_SERVICE"/>
         <receiver android:name=".BgReciever">
             <intent-filter >

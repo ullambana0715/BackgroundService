@@ -55,7 +55,7 @@ public class BgService extends Service {
         public int onStartCommand(Intent intent, int flags, int startId) {
             Log.i(TAG, "InnerService -> onStartCommand");
             startForeground(NOTICE_ID, new Notification());//启动同样id的service
-            stopSelf();//可选
+            stopSelf();//可选,stop的话可绕过7.x系统提示，但是bgService还可以在后台运行。
             return START_STICKY;
         }
 
