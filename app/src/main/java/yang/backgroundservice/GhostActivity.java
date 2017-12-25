@@ -1,7 +1,10 @@
 package yang.backgroundservice;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -31,5 +34,20 @@ public class GhostActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         startService(new Intent(this,BgService.class));
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(screenReceiver,filter);
     }
+
+    BroadcastReceiver screenReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)){
+
+            }else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
+
+            }
+        }
+    };
 }

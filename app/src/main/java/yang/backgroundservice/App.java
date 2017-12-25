@@ -1,5 +1,6 @@
 package yang.backgroundservice;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Application;
 import android.app.PendingIntent;
@@ -11,6 +12,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
+
 /**
  * Created by Administrator on 2017/12/19.
  */
@@ -19,6 +23,7 @@ public class App extends Application {
     public static App app;
     public static final int TIME_REPEATE = 1 * 60 * 1000;//设定alarm唤醒间隔
     public static final int ALARM_REPEATE_CODE = 1024;//设定唤醒
+    WeakReference<Activity> activityRef;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate() {
@@ -36,5 +41,25 @@ public class App extends Application {
         builder.setPersisted(true);
         JobScheduler scheduler = (JobScheduler)getSystemService(Context.JOB_SCHEDULER_SERVICE);
         scheduler.schedule(builder.build());
+    }
+
+    public void startBgActivity(Activity a){
+        if (null == activityRef){
+            activityRef = new WeakReference<>(a);
+        }
+
+        Intent intent = new Intent(this,NormalActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    public void stopBgActivity(){
+        if (null != activityRef){
+            Activity activity = activityRef.get();
+            if (null != activity){
+                activity.finish();
+                activityRef = null;
+            }
+        }
     }
 }

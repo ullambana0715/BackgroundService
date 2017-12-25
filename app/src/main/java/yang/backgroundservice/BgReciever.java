@@ -18,5 +18,8 @@ public class BgReciever extends BroadcastReceiver {
         Intent newIntent = new Intent(context,BgService.class);
         newIntent.setAction(intent.getAction());
         context.startService(newIntent);
+
+        //监听Screen广播，在锁频中提高service存活
+        
     }
 }
