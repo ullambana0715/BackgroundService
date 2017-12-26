@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 /**
  * Created by Administrator on 2017/12/19.
@@ -44,9 +45,11 @@ public class GhostActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)){
-
+                Log.d(this.getClass().getSimpleName(),"ACTION_SCREEN_ON");
+                App.app.stopBgActivity();
             }else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
-
+                Log.d(this.getClass().getSimpleName(),"ACTION_SCREEN_OFF");
+                App.app.startBgActivity(GhostActivity.this);
             }
         }
     };

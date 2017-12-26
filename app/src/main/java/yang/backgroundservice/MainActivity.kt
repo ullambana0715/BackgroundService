@@ -10,8 +10,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         startService(Intent(this, BgService::class.java))
+        startActivity(Intent(this,GhostActivity::class.java))
         // Example of a call to a native method
         sample_text.text = stringFromJNI()
     }

@@ -49,6 +49,7 @@ public class App extends Application {
         }
 
         Intent intent = new Intent(this,NormalActivity.class);
+        intent.setAction(NormalActivity.NORMAL_ACTION);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
