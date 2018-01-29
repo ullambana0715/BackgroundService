@@ -5,18 +5,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
->>>>>>> new
 android {
     compileSdkVersion 26
     defaultConfig {
